@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #cont {
+            margin-top:100px; 
+            width: 400px;
+            height: 400px; 
+            border-top:1px solid blue; 
+            position: relative; 
+            /*隐藏顶部*/ 
+            /* overflow: hidden; */
+        }
+        #main {
+            width: 400px;
+            height: 400px; 
+            /*去掉红框*/
+            /* border:1px solid red; */
+            position: relative; 
+            top:-100px;
+        }
+        .row {
+            height: 100px;
+        }
+        .row div {
+            width: 98px;
+            height: 98px;
+            border:1px solid gray;
+            float: left;
+        }
+        .black {
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="fen" value="0" disabled>
+    <div id="cont">
+        <div id="main"></div>
+    </div>
+</body>
+
+<script>
+    /* function Youxi(){
+        // 获取main节点对象
+        this.main = document.getElementById('main');
+        this.interval = ''; // 定时器
+        this.over = false; // 有是否结束的标志
+        this.sudu = 1; // 初始化下降速度
+
+        // 创建DIV的方法
+        this.cdiv = function(classNames){
+            // 创建一个div节点对象
+            var div = document.createElement('div');
+            // 根据传入的值，创建不同class属性的div
+            if(classNames){
+                div.className = classNames;
+            }
+            return div;
+        }
+
+        //一次生成一行div
+        this.crow = function(init){
+            var row = this.cdiv('row');
+            // 获取0-3的随机数
+            var k = Math.floor(Math.random()*4)
+            // 每行div根据随机数，随机设置一个黑块
+            for(var i=0;i<4;i++){
+                // 随机出现黑块
+                if(i==k){
+                    row.appendChild(this.cdiv('black'));
+                }else{
+                    row.appendChild(this.cdiv());
+                }
+            }
+            return row;
+        }
+
+        // 初始化运行
+        this.init = function(){
+            // 循环创建4行，并添加到main中
+            for(var i = 0;i<4;i++){
+                var row = this.crow();
+                this.main.appendChild(row);
+            }
+            // 绑定点击事件
+            this.clicks();
+            // 设置定时器，使DIV动起来
+            this.interval = window.setInterval('start.move()' , 15);
+        }
+        
+        
+        // 绑定点击事件
+        this.clicks = function(){
+            // 因为在其他作用域中要使用本对象，
+            // 防止this指向冲突，将this赋值给一个新的变量，在其他作用域中使用新的变量代替this
+            var that = this;
+            // 为整个main绑定点击事件
+            this.main.onclick = function(ev){
+                // 通过事件对象，获取具体点击的节点
+                var focus = ev.target;
+                // 如果游戏已经结束了
+                if(that.over){
+                    alert('别挣扎了，游戏已经结束了！');
+                }
+                // 如果点击的元素有值为black的class属性，
+                // 证明用户点击的是黑色块
+                else if(focus.className == 'black'){
+                    // 获取文本框节点对象
+                    var score = document.getElementById('fen');
+                    // 将文本框的值获取并加1后重新复制
+                    var sc = parseInt(score.value)+1;
+                    score.value = sc;
+                    // 将黑块变白
+                    focus.className = '';
+                    // 如果此行被点击过，给这一行发一个'同行证'
+                    focus.parentNode.pass = true;
+                    // 得分每增加5，下降速度提高0.5个像素点
+                    if(sc%5 == 0){
+                        that.sudu += 0.5;
+                    }
+
+                }else{
+                    // 点击的不是黑块，结束游戏
+                    window.clearInterval(that.interval);
+                    // 游戏已经结束了
+                    that.over = true;
+                    alert('游戏已结束')
+                }
+            }
+        }
+
+        // 每调用一次 main 的top值加2像素，main就会向下移动2像素
+        // 我们只需要不断调用move,就会让main不断下降
+        this.move = function(){
+            // 获取top值
+            var t = getComputedStyle(this.main, null)['top'];
+            var tops = parseInt(t);
+            // 如果tops大于1，证明一行下降结束
+            if(tops>1){
+                // 如果此行没有通行证，游戏结束
+                if(this.main.lastChild.pass==undefined){
+                    window.clearInterval(this.interval);
+                    // 游戏已经结束了
+                    this.over = true;
+                    alert('游戏已结束')
+                }else{ // 如果有通行证
+                    // 如果大于5行，删除最后一行
+                    if(this.main.children.length>=5) {
+                        this.main.removeChild(this.main.lastChild);
+                    }
+                }
+                // 下降结束一行，则在最顶部增加一行，完成下降的连续性
+                var row = this.crow();
+                this.main.insertBefore(row,this.main.firstChild);
+                // 并重新隐藏新加的一行
+                this.main.style.top = '-100px';
+            }else{
+                // 定时器每调用一次，top 值修改一次
+                // 完成下降动作
+                this.main.style.top = tops + this.sudu +'px';
+            }
+        }
+    }
+
+    var start = new Youxi();
+    start.init(); */
+</script>
+</html>
